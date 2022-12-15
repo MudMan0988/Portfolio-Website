@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Portfolio Website</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div id="header">
+    <div class="container">
+        <nav>
+            <ul>
+                <li><a href="#header">Home</a></li>
+                <li><a href="#about">About Me</a></li>
+                <li><a href="#services">Services</a></li>
+                <li><a href="#portfolio">Portfolio</a></li>
+                <li><a href="#contact">Contacts</a></li>
+            </ul>
+        </nav>
+        <div class="header-text">
+            <p>Software and Web Developer</p>
+            <h1>Good Day, I'm <span>Joshua Arroyo</span><br>from Quezon City</h1>
+        </div>
+    </div>
+
+</div>
+<!-- ------------ about section ----------- -->
+<div id="about">
+    <div class="container">
+        <div class="row">
+            <div class="about-col-1">
+                <img src="images/croppic1.png">
+            </div>
+            <div class="about-col-2">
+                <h1 class="sub-title">About Me</h1>
+                <p>Hi, I am Joshua Arroyo, 21 years old. I am a young software and website developer who aspires to contribute and innovate for the tech industry. I am skilled at various programming language and experienced at the field.</p>
+
+                <div class="tab-titles">
+                    <p class="tab-links active-link" onclick="opentab('skills')">Skills</p>
+                    <p class="tab-links" onclick="opentab('educational background')">Educational Bakcground</p> 
+                </div>
+                <div class="tab-contents active-tab" id="skills">
+                    <ul>
+                        <li><span>UI?UX</span><br>Designing Website or Application and Interface.</li>
+                        <li><span>Software</span><br>Can do Front-End, Back-End, and Full Stack Development.</li>
+                        <li><span>Design</span><br>Proficient in Graphics Design.</li>
+                    </ul>
+                </div>
+                <div class="tab-contents" id="educational background">
+                    <ul>
+                        <li><span>Secondary</span><br>Novaliches HighSchool (2014 - 2018)</li>
+                        <li><span>Tertiary</span><br>STI College Novaliches (2021 - Present)</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- ---------- services ----------- -->
+<div id="services">
+    <div class="container">
+        <h1 class="sub-title">Services Offered</h1>
+        <div class="services-list">
+            <div>
+                <h2>Website and Software Development</h2>
+                <p>Develops applications and integrates modern techniques and principles in order to create your desired output. Experienced on all aspects of programming.</p>
+                
+            </div>
+            <div>
+                <h2>Graphics Design</h2>
+                <p>Designs Web and Software based UI in consideration to aesthetics and user experience.</p>
+                
+            </div>
+            <div>
+                <h2>IT Security</h2>
+                <p>Creates effective measures against cyber based threats in order to assure the individual or organization's security on the web.</p>
+                
+            </div>
+            <div>
+                <h2>Database Administration</h2>
+                <p>Keeps track and secures your data by employing various software and programming techniques.</p>
+                
+            </div>
+        </div>
+    </div>
+</div>
+<!-- --------------Portfolio----------- -->
+<div id="portfolio">
+    <div class="container">
+        <h1 class="sub-title">My Works</h1>
+        <div class="work-list">
+            <div class="work">
+                <img src="images/website1.png">
+            </div>
+            <div class="work">
+                <img src="images/Page 1.png">
+            </div>
+        </div>
+        <div class="layer">
+            <h3>Music Streaming App "Spectrum"</h3>
+            <p>This application is a very capable music streaming software that lets you listen to any artist worldwide, access their whole discography and connect to other listeners.</p>
+        </div>
+    </div>
+</div>
+
+<!-- --------------- contacts ----------- -->
+<div id="contact">
+    <div class="container">
+        <div class="row">
+            <div class="contact-left">
+                <h1 class="sub-title">My Contacts</h1>
+                <p>joshuaarroyo88@yahoo.com</p>
+                <p>09662835766</p>
+            </div>
+            <div class="contact-right">
+                <form name="submit-to-google-sheet">
+                    <input type="text" name="Name" placeholder="Your Name" required>
+                    <input type="email" name="Email" placeholder="Your Email" required>
+                    <textarea name="Message" rows="6" placeholder="Your Message"></textarea>
+                    <button type="submit" class="btn">Submit</button>
+                </form>
+                <span id="msg"></span>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    var tablinks = document.getElementsByClassName("tab-links");
+    var tabcontents = document.getElementsByClassName("tab-contents");
+    function opentab(tabname){
+        for(tablink of tablinks){
+            tablink.classList.remove("active-link");
+        }
+        for(tabcontent of tabcontents){
+            tabcontent.classList.remove("active-tab");
+        }
+        event.currentTarget.classList.add("active-link");
+        document.getElementById(tabname).classList.add("active-tab");
+    }
+</script>
+<script>
+    const scriptURL = 'https://script.google.com/macros/s/AKfycbwROogF2H5pnEMbUnZoX8z-VGx6zndhNJ38Byw9xFQnxIs11Wdba-lQfTRQIuL4M5NT/exec'
+    const form = document.forms['submit-to-google-sheet']
+    const msg = document.getElementById("msg")
+  
+    form.addEventListener('submit', e => {
+      e.preventDefault()
+      fetch(scriptURL, { method: 'POST', body: new FormData(form)})
+        .then(response => {
+            msg.innerHTML = "Message Successfully Sent"
+            setTimeout(function(){
+                msg.innerHTML = ""
+            },5000)
+            form.reset()
+        })
+        .catch(error => console.error('Error!', error.message))
+    })
+  </script
+</body>
+</html>
